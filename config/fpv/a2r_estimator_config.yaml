@@ -7,31 +7,22 @@ integration: "rk4" # discrete, rk4, analytical (if rk4 or analytical used then a
 use_stereo: false # if we have more than 1 camera, if we should try to track stereo constraints between pairs
 max_cameras: 1 # how many cameras we have 1 = mono, 2 = stereo, >2 = binocular (all mono tracking)
 
-calib_cam_extrinsics: false # if the transform between camera and IMU should be optimized R_ItoC, p_CinI
-calib_cam_intrinsics: false # if camera intrinsics should be optimized (focal, center, distortion)
-calib_cam_timeoffset: false # if timeoffset between camera and IMU should be optimized
+calib_cam_extrinsics: true # if the transform between camera and IMU should be optimized R_ItoC, p_CinI
+calib_cam_intrinsics: true # if camera intrinsics should be optimized (focal, center, distortion)
+calib_cam_timeoffset: true # if timeoffset between camera and IMU should be optimized
 calib_imu_intrinsics: false # if imu intrinsics should be calibrated (rotation and skew-scale matrix)
 calib_imu_g_sensitivity: false # if gyroscope gravity sensitivity (Tg) should be calibrated
 
 max_clones: 11 # how many clones in the sliding window
-max_slam: 200 # number of features in our state vector
+max_slam: 100 # number of features in our state vector
 max_slam_in_update: 25 # update can be split into sequential updates of batches, how many in a batch
 max_msckf_in_update: 50 # how many MSCKF features to use in the update
-dt_slam_delay: 2 # delay before initializing (helps with stability from bad initialization...)
+dt_slam_delay: 3 # delay before initializing (helps with stability from bad initialization...)
 
-gravity_mag: 9.80 # magnitude of gravity in this location
+gravity_mag: 9.81 # magnitude of gravity in this location
 
-feat_rep_msckf: "GLOBAL_FULL_INVERSE_DEPTH"
-# GLOBAL_3D,
-              # GLOBAL_FULL_INVERSE_DEPTH,
-              # ANCHORED_3D,
-              # ANCHORED_FULL_INVERSE_DEPTH,
-              # ANCHORED_MSCKF_INVERSE_DEPTH,
-              # ANCHORED_INVERSE_DEPTH_SINGLE,
-              # UNKNOWN }
-
-
-feat_rep_slam: "GLOBAL_FULL_INVERSE_DEPTH"
+feat_rep_msckf: "GLOBAL_3D"
+feat_rep_slam: "ANCHORED_MSCKF_INVERSE_DEPTH"
 feat_rep_aruco: "ANCHORED_MSCKF_INVERSE_DEPTH"
 # feat_rep_slam: "ANCHORED_FULL_INVERSE_DEPTH"
 # feat_rep_aruco: "ANCHORED_FULL_INVERSE_DEPTH"
@@ -90,13 +81,17 @@ filepath_gt: "/tmp/ov_groundtruth.txt"
 # our front-end feature tracking parameters
 # we have a KLT and descriptor based (KLT is better implemented...)
 use_klt: true # if true we will use KLT, otherwise use a ORB descriptor + robust matching
-num_pts: 200 # number of points (per camera) we will extract and try to track
-fast_threshold: 30 # threshold for fast extraction (warning: lower threshs can be expensive)
+num_pts: 400 # number of points (per camera) we will extract and try to track
+# num_pts: 200 # number of points (per camera) we will extract and try to track
+# fast_threshold: 20 # threshold for fast extraction (warning: lower threshs can be expensive)
+fast_threshold: 15 # threshold for fast extraction (warning: lower threshs can be expensive)
 grid_x: 5 # extraction sub-grid count for horizontal direction (uniform tracking)
-grid_y: 5 # extraction sub-grid count for vertical direction (uniform tracking)
-min_px_dist: 15 # distance between features (features near each other provide less information)
+# grid_y: 5 # extraction sub-grid count for vertical direction (uniform tracking)
+grid_y: 3 # extraction sub-grid count for vertical direction (uniform tracking)
+# min_px_dist: 10 # distance between features (features near each other provide less information)
+min_px_dist: 20 # distance between features (features near each other provide less information)
 knn_ratio: 0.70 # descriptor knn threshold for the top two descriptor matches
-track_frequency: 29.0 # frequency we will perform feature tracking at (in frames per second / hertz)
+track_frequency: 21.0 # frequency we will perform feature tracking at (in frames per second / hertz)
 downsample_cameras: false # will downsample image in half if true
 num_opencv_threads: 4 # -1: auto, 0-1: serial, >1: number of threads
 histogram_method: "HISTOGRAM" # NONE, HISTOGRAM, CLAHE
@@ -111,11 +106,11 @@ downsize_aruco: true
 # ==================================================================
 
 # camera noises and chi-squared threshold multipliers
-up_msckf_sigma_px: 10
+up_msckf_sigma_px: 1
 up_msckf_chi2_multipler: 1
-up_slam_sigma_px: 10
+up_slam_sigma_px: 1
 up_slam_chi2_multipler: 1
-up_aruco_sigma_px: 10
+up_aruco_sigma_px: 1
 up_aruco_chi2_multipler: 1
 
 # masks for our images
@@ -125,7 +120,6 @@ use_mask: false
 # imu config should also have the correct noise values
 relative_config_imu: "kalibr_imu_chain.yaml"
 relative_config_imucam: "kalibr_imucam_chain.yaml"
-
 
 
 
