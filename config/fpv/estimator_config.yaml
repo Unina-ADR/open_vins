@@ -91,11 +91,11 @@ filepath_gt: "/tmp/ov_groundtruth.txt"
 # we have a KLT and descriptor based (KLT is better implemented...)
 use_klt: true # if true we will use KLT, otherwise use a ORB descriptor + robust matching
 num_pts: 450 # number of points (per camera) we will extract and try to track
-fast_threshold: 14 # threshold for fast extraction (warning: lower threshs can be expensive)
+fast_threshold: 12 # threshold for fast extraction (warning: lower threshs can be expensive)
 grid_x: 8 # extraction sub-grid count for horizontal direction (uniform tracking)
 grid_y: 6 # extraction sub-grid count for vertical direction (uniform tracking)
-min_px_dist: 12 # distance between features (features near each other provide less information)
-knn_ratio: 0.4 # descriptor knn threshold for the top two descriptor matches
+min_px_dist: 20 # distance between features (features near each other provide less information)
+knn_ratio: 0.6 # descriptor knn threshold for the top two descriptor matches
 track_frequency: 60.0 # frequency we will perform feature tracking at (in frames per second / hertz)
 downsample_cameras: false # will downsample image in half if true
 num_opencv_threads: 4 # -1: auto, 0-1: serial, >1: number of threads
@@ -111,10 +111,10 @@ downsize_aruco: true
 # ==================================================================
 
 # camera noises and chi-squared threshold multipliers
-up_msckf_sigma_px: 1.5
-up_msckf_chi2_multipler: 1.5
-up_slam_sigma_px: 1.5
-up_slam_chi2_multipler: 1.5
+up_msckf_sigma_px: 15
+up_msckf_chi2_multipler: 10
+up_slam_sigma_px: 15
+up_slam_chi2_multipler: 10
 up_aruco_sigma_px: 1.5
 up_aruco_chi2_multipler: 1.5
 
