@@ -21,7 +21,7 @@ dt_slam_delay: 1 # delay before initializing (helps with stability from bad init
 
 gravity_mag: 9.80 # magnitude of gravity in this location
 
-feat_rep_msckf: "GLOBAL_FULL_INVERSE_DEPTH"
+feat_rep_msckf: "ANCHORED_FULL_INVERSE_DEPTH"
 # GLOBAL_3D,
               # GLOBAL_FULL_INVERSE_DEPTH,
               # ANCHORED_3D,
@@ -31,7 +31,7 @@ feat_rep_msckf: "GLOBAL_FULL_INVERSE_DEPTH"
               # UNKNOWN }
 
 
-feat_rep_slam: "GLOBAL_FULL_INVERSE_DEPTH"
+feat_rep_slam: "ANCHORED_FULL_INVERSE_DEPTH"
 feat_rep_aruco: "ANCHORED_MSCKF_INVERSE_DEPTH"
 # feat_rep_slam: "ANCHORED_FULL_INVERSE_DEPTH"
 # feat_rep_aruco: "ANCHORED_FULL_INVERSE_DEPTH"
@@ -111,10 +111,10 @@ downsize_aruco: true
 # ==================================================================
 
 # camera noises and chi-squared threshold multipliers
-up_msckf_sigma_px: 15
-up_msckf_chi2_multipler: 10
-up_slam_sigma_px: 15
-up_slam_chi2_multipler: 10
+up_msckf_sigma_px: 1
+up_msckf_chi2_multipler: 3
+up_slam_sigma_px: 1
+up_slam_chi2_multipler: 3
 up_aruco_sigma_px: 1.5
 up_aruco_chi2_multipler: 1.5
 
