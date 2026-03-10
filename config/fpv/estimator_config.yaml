@@ -129,5 +129,5 @@ use_mask: false
 # relative_config_imucam: "kalibr_imucam_chain_008_45_deg.yaml"
 
 # Drone 007
-relative_config_imu: "kalibr_imu_chain_007.yaml"
-relative_config_imucam: "kalibr_imucam_chain_007_30_deg.yaml"
+relative_config_imu: "camimu-imu.yaml"
+relative_config_imucam: "camimu-camchain-imucam.yaml"
