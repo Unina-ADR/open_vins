@@ -1,14 +1,15 @@
+%YAML:1.0 # need to specify the file type at the top!
+
 imu0:
   T_i_b:
-  - [1.0, 0.0, 0.0, 0.0]
-  - [0.0, 1.0, 0.0, 0.0]
-  - [0.0, 0.0, 1.0, 0.0]
-  - [0.0, 0.0, 0.0, 1.0]
+    - [1.0, 0.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0]
+    - [0.0, 0.0, 0.0, 1.0]
   accelerometer_noise_density: 0.0023924721867853585
   accelerometer_random_walk: 5.8304059544722874e-05
   gyroscope_noise_density: 0.00010242135112022927
   gyroscope_random_walk: 3.104180792344068e-06
-  model: calibrated
   rostopic: /skydreamer/imu
   time_offset: 0.0
   update_rate: 300.0
